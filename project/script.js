@@ -1,20 +1,22 @@
-const url = 'https://open-weather13.p.rapidapi.com/city/landon/EN';
 const options = {
-	method: 'GET',
+    method: 'GET',
 	headers: {
-		'x-rapidapi-key': '95d1ec6019mshefaaac06ad8026bp1b58f0jsnf4bf4dc22a77',
-		'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+        'x-rapidapi-key': 'YOUR_API_KEY',
+		'x-rapidapi-host': 'the-weather-api.p.rapidapi.com'
 	}
 };
-
-let myFun = async ()=>{
+async function getWeatherForecast() {
+    const BaseUrl = 'https://the-weather-api.p.rapidapi.com/api/weather';
+    let city = document.getElementById("inputCity").value;
+    const url = `${BaseUrl}/${city}`;
     try {
         const response = await fetch(url, options);
-        const result = await response.text();
-        document.getElementById("para").innerHTML = result;
-        console.log(result);
+        const result = await response.json();
+        const data = result.data;
+        document.getElementById("BGimg").src = result.data.bg_image
+        console.log(data);
     } catch (error) {
         console.error(error);
     }
 }
-document.getElementById("btn").addEventListener('click', myFun)
+document.getElementById("btn").addEventListener('click', getWeatherForecast);
