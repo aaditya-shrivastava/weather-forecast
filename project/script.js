@@ -5,7 +5,6 @@ const options = {
     "x-rapidapi-host": "yahoo-weather5.p.rapidapi.com",
   },
 };
-
 async function getWeatherForecast() {
   try {
     let location = document.getElementById("inputCity").value;
@@ -20,5 +19,4 @@ async function getWeatherForecast() {
     console.error(error);
   }
 }
-
 document.getElementById("btn").addEventListener("click", getWeatherForecast);
